@@ -1,23 +1,38 @@
 .product-component {
 	margin: 8px 4px;
+
 	.card {
 		width: 240px;
+
 		.card-title {
 			text-align: left;
 		}
+
 		.card-text {
 			text-align: left;
 			margin-bottom: 0;
-			font-weight: bold;
-			span {
-				color: #727272;
-				font-weight: normal;
+
+			.price {
+				font-weight: bold;
+			}
+
+			.actual-price {
+				text-decoration: line-through;
+				color: grey;
+				font-size: 12px;
+			}
+
+			.discount {
+				color: grey;
+				font-size: 12px;
 			}
 		}
+
 		.action {
 			display: flex;
 			justify-content: space-between;
 			margin-top: 1em;
+
 			.q-holder {
 				width: 30%;
 			}

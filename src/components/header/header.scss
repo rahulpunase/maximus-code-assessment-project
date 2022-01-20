@@ -1,5 +1,12 @@
 .header-component {
 	.header-holder {
 		justify-content: space-between;
+		.actions {
+			display: flex;
+			.spacer {
+				width: 40px;
+			}
+			margin-right: 20px;
+		}
 	}
 }

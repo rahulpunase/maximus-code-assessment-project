@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Switch, Route, Redirect,useLocation} from 'reac
 import Home from "../../pages/home/home";
 import Login from "../../pages/authentication/login/login";
 import HeaderComponent from "../header/header";
+import Cart from "../../pages/cart/cart";
 
 const RouterConfiguration = () => {
 	const location = useLocation();
@@ -16,6 +17,9 @@ const RouterConfiguration = () => {
 				</Route>
 				<Route path={'/home'}>
 					<Home/>
+				</Route>
+				<Route path={'/cart'}>
+					<Cart/>
 				</Route>
 				<Route path={'/login'}>
 					<Login/>

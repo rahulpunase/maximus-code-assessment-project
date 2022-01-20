@@ -20,6 +20,9 @@ const Login = () => {
 								<input type="password" className="form-control" id="inputPassword"/>
 							</div>
 						</div>
+						<div className="mb-3 row">
+							<button type="submit" className="btn btn-primary">Log in</button>
+						</div>
 					</div>
 				</div>
 			</div>
