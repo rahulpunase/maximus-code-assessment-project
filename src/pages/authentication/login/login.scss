@@ -1,0 +1,12 @@
+.login-page {
+	height: 100vh;
+	.in-centre {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 100%;
+		.card {
+			min-width: 600px;
+		}
+	}
+}

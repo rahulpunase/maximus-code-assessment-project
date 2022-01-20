@@ -1,0 +1,26 @@
+.product-component {
+	margin: 8px 4px;
+	.card {
+		width: 240px;
+		.card-title {
+			text-align: left;
+		}
+		.card-text {
+			text-align: left;
+			margin-bottom: 0;
+			font-weight: bold;
+			span {
+				color: #727272;
+				font-weight: normal;
+			}
+		}
+		.action {
+			display: flex;
+			justify-content: space-between;
+			margin-top: 1em;
+			.q-holder {
+				width: 30%;
+			}
+		}
+	}
+}
