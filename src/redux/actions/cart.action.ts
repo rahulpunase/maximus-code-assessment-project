@@ -15,10 +15,10 @@ export const removeItemFromCart = (cartItemId: string): IAction<any> => ({
 	payload: cartItemId
 });
 
-export const updateItemQuantity = (cartItem: ICartItem, newQuantity: number): IAction<any> => ({
+export const updateItemQuantity = (cartItemId: string, newQuantity: number): IAction<any> => ({
 	type: UPDATE_QUANTITY,
 	payload: {
-		cartItem: cartItem,
+		cartItemId: cartItemId,
 		newQuantity: newQuantity
 	}
 });

@@ -26,7 +26,7 @@ export const CartReducer = (state: ICartReducer = defaultState, action: IAction<
 			return {...state};
 		}
 		case UPDATE_QUANTITY: {
-			const itemToUpdate = state.cartItems.find(item => item.id === action.payload.cartItem.id);
+			const itemToUpdate = state.cartItems.find(item => item.id === action.payload.cartItemId);
 			if (itemToUpdate) {
 				itemToUpdate.quantity = action.payload.newQuantity;
 			}

@@ -1,12 +1,25 @@
 import React from 'react';
 import './header.scss';
-import { NavLink } from 'react-router-dom';
-import {useSelector} from "react-redux";
+import { NavLink, useHistory, useLocation } from 'react-router-dom';
+import {useDispatch, useSelector} from "react-redux";
 import {IStore} from "../../redux/store";
+import {logUserOut, setFromWhere} from '../../redux/actions/auth.action';
 
 const HeaderComponent = () => {
-	const store = useSelector((store: IStore) => store);
-	const getCartCount = store.cartReducer.cartItems.map(item => item.quantity).reduce((qua, acc) => qua + acc, 0);
+	const dispatch = useDispatch();
+	const history = useHistory();
+	const location = useLocation();
+	const { authReducer, cartReducer } = useSelector((store: IStore) => store);
+	const getCartCount = cartReducer.cartItems.map(item => item.quantity).reduce((qua, acc) => qua + acc, 0);
+
+	const logOut = () => {
+		dispatch(logUserOut());
+	}
+
+	const navigateToLogin = () => {
+		dispatch(setFromWhere(location.pathname));
+		history.push('/login');
+	}
 	return (
 		<div className='header-component'>
 			<nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -15,10 +28,13 @@ const HeaderComponent = () => {
 					<div className="actions">
 						<NavLink to={'/cart'} type="button" className="btn btn-primary position-relative">
 							Cart
-							<span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{getCartCount}<span className="visually-hidden">Cart</span></span>
+							<span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{getCartCount}</span>
 						</NavLink>
 						<div className="spacer"/>
-						<NavLink to={'/login'} type="button" className="btn btn-primary">Login</NavLink>
+						{!authReducer.isLoggedIn && <button onClick={navigateToLogin} type="button" className="btn btn-primary">Login</button>}
+						{authReducer.isLoggedIn && <button title={authReducer.userEmail} type="button" className="btn btn-primary">My Account</button>}
+						<div className="spacer"/>
+						{authReducer.isLoggedIn && <button onClick={logOut} type="button" className="btn btn-danger">Log out</button>}
 					</div>
 				</div>
 			</nav>
