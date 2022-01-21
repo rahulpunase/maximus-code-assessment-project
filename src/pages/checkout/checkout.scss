@@ -1,3 +1,16 @@
 .checkout-page {
-
+	.heading {
+		text-align: left;
+	}
+	.list-group-item {
+		&.last {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			.total-summary {
+				color: red;
+				font-size: 18px;
+			}
+		}
+	}
 }

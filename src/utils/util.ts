@@ -5,5 +5,11 @@ export const Utils = {
 		return cartItems.map(cartItem => {
 			return (cartItem.price - (cartItem.price * cartItem.discount)/ 100) * cartItem.quantity;
 		}).reduce((price, acc) => price + acc, 0).toFixed(2);
+	},
+	calculateItemQty: (cartItems: Array<ICartItem>): number => {
+		return cartItems.map(item => item.quantity).reduce((qua, acc) => qua + acc, 0);
+	},
+	getItemPriceAfterDiscount: (cartItem: ICartItem): string => {
+		return ((cartItem.price - (cartItem.price * cartItem.discount)/ 100) * cartItem.quantity).toFixed(2);
 	}
 }

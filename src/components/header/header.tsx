@@ -24,7 +24,7 @@ const HeaderComponent = () => {
 		<div className='header-component'>
 			<nav className="navbar navbar-expand-lg navbar-light bg-light">
 				<div className="container-fluid header-holder">
-					<a className="navbar-brand" href="#">Cart Project</a>
+					<NavLink to={'/home'} className="navbar-brand" href="#">Cart Project</NavLink>
 					<div className="actions">
 						<NavLink to={'/cart'} type="button" className="btn btn-primary position-relative">
 							Cart

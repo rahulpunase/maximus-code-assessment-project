@@ -3,8 +3,13 @@ import './cart-item.scss';
 import {ICartItem} from "../../redux/reducers/cart.reducers";
 import {removeItemFromCart, updateItemQuantity} from "../../redux/actions/cart.action";
 import {useDispatch, useSelector} from "react-redux";
+import {Utils} from "../../utils/util";
 
-const CartItem = (props: ICartItem) => {
+export interface ICartItemComponent extends ICartItem {
+	showAction: boolean
+}
+
+const CartItem = (props: ICartItemComponent) => {
 	const dispatch = useDispatch();
 	const [qty, setQty] = useState(props.quantity);
 	const [showSaveButton, setShowSaveButton] = useState(false);
@@ -38,7 +43,6 @@ const CartItem = (props: ICartItem) => {
 	}
 
 	useEffect(() => {
-		console.log('ok');
 		setShowSaveButton(props.quantity != qty);
 	}, [qty]);
 	return (
@@ -60,7 +64,8 @@ const CartItem = (props: ICartItem) => {
 					<div className="other-info">
 						<span>Applicable discount of {props.discount}%</span>
 					</div>
-					<div className="actions">
+					{ !props.showAction && <div className="read-only-qty">Quantity: {props.quantity}, Bundle Total: <b><i className='fa fa-rupee-sign'></i>{Utils.getItemPriceAfterDiscount(props)}</b></div>}
+					{ props.showAction && <div className="actions">
 						<div className="select">
 							<div className="input-group">
 								<input onChange={(ev) => updateQty(ev)} value={qty} type="number"
@@ -82,7 +87,7 @@ const CartItem = (props: ICartItem) => {
 								className='fa fa-minus-circle'/>Remove item from cart
 							</button>
 						</div>
-					</div>
+					</div>}
 				</div>
 			</div>
 		</div>
