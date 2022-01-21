@@ -3,7 +3,6 @@ import './checkout.scss';
 import {useDispatch, useSelector} from "react-redux";
 import {IStore} from "../../redux/store";
 import {Utils} from "../../utils/util";
-import Product from "../../components/product/product";
 import CartItem from "../../components/cart-item/cart-item";
 import {clearCart} from "../../redux/actions/cart.action";
 import {useHistory} from 'react-router-dom';
@@ -55,8 +54,8 @@ const Checkout = () => {
 											className="fa fa-rupee-sign"/> {cartReducer.order.totalPrice}
 										</div>
 										<div className="confirm-order">
-											<button onClick={confirmOrder} className="btn btn-success">Confirm Order
-											</button>
+											{ cartReducer.order.items.length && <button onClick={confirmOrder} className="btn btn-success">Confirm Order
+											</button>}
 										</div>
 									</li>
 								</ul>

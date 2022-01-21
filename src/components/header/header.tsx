@@ -4,13 +4,14 @@ import { NavLink, useHistory, useLocation } from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import {IStore} from "../../redux/store";
 import {logUserOut, setFromWhere} from '../../redux/actions/auth.action';
+import {Utils} from "../../utils/util";
 
 const HeaderComponent = () => {
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const location = useLocation();
 	const { authReducer, cartReducer } = useSelector((store: IStore) => store);
-	const getCartCount = cartReducer.cartItems.map(item => item.quantity).reduce((qua, acc) => qua + acc, 0);
+	const getCartCount = Utils.getCartCount(cartReducer.cartItems);
 
 	const logOut = () => {
 		dispatch(logUserOut());

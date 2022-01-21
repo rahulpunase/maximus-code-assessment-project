@@ -7,7 +7,7 @@ import {addItemToCart, removeItemFromCart} from "../../redux/actions/cart.action
 import {IStore} from "../../redux/store";
 
 const Product = (props: IProduct) => {
-	const [defaultQuantity, setDefaultQuantity] = useState('1');
+	const [defaultQuantity, setDefaultQuantity] = useState(1);
 	const [isItemAlreadyInCart, setIsItemAlreadyInCart] = useState<boolean>();
 	const store = useSelector((store: IStore) => store);
 	const cartItemArray = store.cartReducer.cartItems;
@@ -29,6 +29,10 @@ const Product = (props: IProduct) => {
 		return (props.price - (props.price * props.discount) / 100).toFixed(2);
 	}
 
+	const onQtyUpdate = (event: React.FormEvent<HTMLInputElement>) => {
+		setDefaultQuantity(Number(event.currentTarget.value));
+	}
+
 
 	useEffect(() => {
 		const item = cartItemArray.find(item => props.id === item.id);
@@ -44,11 +48,11 @@ const Product = (props: IProduct) => {
 						<p className="card-text"><span className='price'><i className='fa fa-rupee-sign'/>{calculateDiscountedPrice()}</span> <span className='actual-price'><i className='fa fa-rupee-sign'/>{props.price}</span> <span className='discount'>({props.discount}% off)</span></p>
 						<div className="action">
 							{!isItemAlreadyInCart && <div className="q-holder">
-								<input onChange={(event) => setDefaultQuantity(event.target.value)} min={1} defaultValue={defaultQuantity} type="number" className="form-control"/>
+								<input onChange={event => onQtyUpdate(event)} min={1} defaultValue={defaultQuantity} type="number" className="form-control"/>
 							</div>}
 							<div className="add-to-cart">
-								{isItemAlreadyInCart ? <button onClick={() => setRemoveItemFromCart(props)} disabled={defaultQuantity === '0'} type="button" className="btn btn-danger">Remove Item</button>
-									: <button onClick={() => setAddItemToCart(props)} disabled={defaultQuantity === '0'} type="button" className="btn btn-primary">Add to Cart</button>}
+								{isItemAlreadyInCart ? <button onClick={() => setRemoveItemFromCart(props)} disabled={defaultQuantity === 0} type="button" className="btn btn-block btn-danger">Remove Item</button>
+									: <button onClick={() => setAddItemToCart(props)} disabled={defaultQuantity <= 0} type="button" className="btn btn-primary">Add to Cart</button>}
 							</div>
 						</div>
 					</div>

@@ -13,9 +13,7 @@ const CartItem = (props: ICartItemComponent) => {
 	const dispatch = useDispatch();
 	const [qty, setQty] = useState(props.quantity);
 	const [showSaveButton, setShowSaveButton] = useState(false);
-	const calculateDiscountedPrice = (item: ICartItem) => {
-		return (item.price - (item.price * item.discount) / 100).toFixed(2);
-	}
+
 	const setRemoveItemFromCart = (id: string) => {
 		dispatch(removeItemFromCart(id));
 	}
@@ -58,13 +56,13 @@ const CartItem = (props: ICartItemComponent) => {
 						<div className="price">
 							<span className='actual'><i className='fa fa-rupee-sign'/>{props.price.toFixed(2)}</span>
 							<span className='discounted'><i
-								className='fa fa-rupee-sign'/>{calculateDiscountedPrice(props)}</span>
+								className='fa fa-rupee-sign'/>{Utils.getItemPriceDiscount(props)}</span>
 						</div>
 					</div>
 					<div className="other-info">
 						<span>Applicable discount of {props.discount}%</span>
 					</div>
-					{ !props.showAction && <div className="read-only-qty">Quantity: {props.quantity}, Bundle Total: <b><i className='fa fa-rupee-sign'></i>{Utils.getItemPriceAfterDiscount(props)}</b></div>}
+					{ !props.showAction && <div className="read-only-qty">Quantity: {props.quantity}, Bundle Total: <b><i className='fa fa-rupee-sign'/>{Utils.getBundlePriceDiscount(props)}</b></div>}
 					{ props.showAction && <div className="actions">
 						<div className="select">
 							<div className="input-group">

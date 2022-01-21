@@ -7,7 +7,6 @@ import {loginUser} from '../../../redux/actions/auth.action';
 
 export const Login = () => {
 	const history = useHistory();
-	const location = useLocation();
 	const dispatch = useDispatch();
 	const {authReducer} = useSelector((store: IStore) => store);
 	const email = useRef<HTMLInputElement>(null);
@@ -60,7 +59,7 @@ export const Login = () => {
 								</div>
 							</div>
 							<div className="mb-3 row">
-								<button onClick={setLoginUser} type="button" className="btn btn-primary">Log in</button>
+								<button onClick={setLoginUser} type="button" className="btn btn-block btn-primary">Log in</button>
 							</div>
 						</form>
 					</div>
